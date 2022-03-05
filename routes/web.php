@@ -18,11 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-//     return view('dashboard');
-// })->name('dashboard');
-
-
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/dashboard',[TasksController::class, 'index'])->name('dashboard');
@@ -33,4 +28,3 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function(){
     Route::get('/task/{task}', [TasksController::class, 'edit']);
     Route::post('/task/{task}', [TasksController::class, 'update']);
 });
-    

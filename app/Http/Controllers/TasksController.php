@@ -20,9 +20,11 @@ class TasksController extends Controller
     public function create(Request $request)
     {
         $this->validate($request, [
+            'title' => 'required',
             'description' => 'required'
         ]);
     	$task = new Task();
+        $task->title = $request->title;
     	$task->description = $request->description;
     	$task->user_id = auth()->user()->id;
     	$task->save();
@@ -58,4 +60,3 @@ class TasksController extends Controller
     	}
     }
 }
-    

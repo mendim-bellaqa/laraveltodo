@@ -12,7 +12,11 @@
                 <form method="POST" action="/task">
 
                     <div class="form-group">
-                        <textarea name="description" class="text-center bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"  placeholder='Enter your task'></textarea>
+                        <textarea name="title" class="text-center bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"  placeholder='Enter your title'></textarea>
+                        @if ($errors->has('title'))
+                            <span class="text-danger">{{ $errors->first('title') }}</span>
+                        @endif
+                        <textarea name="description" class="text-center bg-gray-100 rounded border border-gray-400 leading-normal resize-none w-full h-20 py-2 px-3 font-medium placeholder-gray-700 focus:outline-none focus:bg-white"  placeholder='Enter your description'></textarea>
                         @if ($errors->has('description'))
                             <span class="text-danger">{{ $errors->first('description') }}</span>
                         @endif
