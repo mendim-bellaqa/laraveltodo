@@ -2,16 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Task;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class TasksController extends Controller
 {
-    public function index()
+    public function index(){
+
+    if(Auth::check())
     {
         $tasks = auth()->user()->tasks();
         return view('dashboard', compact('tasks'));
     }
+
+        return Redirect::route('login')->withInput()->with('errmessage', 'Please Login to access restricted area.');
+
+    }
+
     public function add()
     {
     	return view('add');

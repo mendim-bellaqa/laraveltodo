@@ -1,11 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="font-semibold text-center text-xl text-gray-800 leading-tight">
+        <h2 class="font-semibold text-center text-xl text-white leading-tight">
             {{ __('Dashboard') }}
         </h2>
     </x-slot>
 
-    <div class="py-12 bg-zinc-800">
+    <div class="py-12 bg-white">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class=" overflow-hidden shadow-xl sm:rounded-lg p-5 text-center">
                 <a href="/task" class="border-2 border-blue-500 rounded-lg font-bold text-blue-500 px-4 py-3 transition duration-300 ease-in-out hover:bg-blue-500 hover:text-white mr-6">
