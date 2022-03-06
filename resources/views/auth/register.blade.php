@@ -1,60 +1,72 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="https://unpkg.com/tailwindcss@1.2.0/dist/tailwind.min.css" rel="stylesheet">
+        <title>REGISTER</title>
+    </head>
+    <body>
+    <div class="h-screen font-sans login bg-cover">
+        <div class="container mx-auto h-full flex flex-1 justify-center items-center">
+            <div class="w-full max-w-lg">
+                <div class="leading-loose">
 
-        <x-jet-validation-errors class="mb-4" />
-
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
-
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
-
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
-
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
-
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
-                            </div>
+                    @if (session('status'))
+                        <div class="mb-4 font-medium text-sm text-green-600">
+                            {{ session('status') }}
                         </div>
-                    </x-jet-label>
+                    @endif
+
+                    <form method="POST" action="{{ route('register') }}" class="max-w-sm m-4 p-10 bg-black bg-opacity-25 rounded shadow-xl">
+                        <p class="text-white font-medium text-center text-lg font-bold">REGISTER</p>
+                        @csrf
+                        <div>
+                            <label  class="block text-sm text-white mb-2" for="name">Name</label>
+                            <input id="name" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="text" name="name" :value="old('name')" required autofocus autocomplete="name">
+                        </div>
+                        <div>
+                            <label  class="block text-sm text-white mb-2" for="email">E-mail</label>
+                            <input id="email" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white" type="email" name="email" :value="old('email')" required />
+                        </div>
+                        <div class="mt-2">
+                            <label class="block  text-sm text-white mb-2">Password</label>
+                            <input id="password" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+                            type="password" name="password" required autocomplete="new-password" />
+                        </div>
+
+                        <div class="mt-2">
+                            <label class="block  text-sm text-white mb-2    ">Confirm Password</label>
+                            <input id="password_confirmation" class="w-full px-5 py-1 text-gray-700 bg-gray-300 rounded focus:outline-none focus:bg-white"
+                            type="password" name="password_confirmation" required autocomplete="new-password" />
+                        </div>
+
+                        <div class="text-center mt-10">
+                            <button class="px-4 py-1 text-white font-light tracking-wider bg-gray-900 hover:bg-gray-800 rounded"
+                            type="submit">{{ __('Register') }}</button>
+                        </div>
+                        <div class="text-center mt-10">
+                            <a href="/login" class="border-2 border-white rounded-lg font-bold text-white px-4 py-3 transition duration-300 ease-in-out hover:bg-white hover:text-black">
+                                I have an account !
+                            </a>
+                        </div>
+                    </form>
                 </div>
-            @endif
 
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
             </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+
+        </div>
+    </div>
+        <style>
+        .login{
+        /*
+            background: url('https://tailwindadmin.netlify.app/dist/images/login-new.jpeg');
+        */
+        background: url('http://bit.ly/2gPLxZ4');
+        background-repeat: no-repeat;
+        background-size: cover;
+        }
+        </style>
+    </body>
+</html>

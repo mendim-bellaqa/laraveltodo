@@ -14,7 +14,7 @@ class TasksController extends Controller
     if(Auth::check())
     {
         $tasks = auth()->user()->tasks();
-        return view('dashboard', compact('tasks'));
+        return view('welcome', compact('tasks'));
     }
 
         return Redirect::route('login')->withInput()->with('errmessage', 'Please Login to access restricted area.');
@@ -37,7 +37,8 @@ class TasksController extends Controller
     	$task->description = $request->description;
     	$task->user_id = auth()->user()->id;
     	$task->save();
-    	return redirect('/dashboard');
+
+        return redirect('/')->with('status', 'To Do added successfully.');
     }
 
     public function edit(Task $task)
@@ -48,7 +49,7 @@ class TasksController extends Controller
                 return view('edit', compact('task'));
         }
         else {
-             return redirect('/dashboard');
+             return redirect('/');
          }
     }
 
@@ -56,16 +57,18 @@ class TasksController extends Controller
     {
     	if(isset($_POST['delete'])) {
     		$task->delete();
-    		return redirect('/dashboard');
+    		return redirect('/');
     	}
     	else
     	{
             $this->validate($request, [
+                'title' => 'required',
                 'description' => 'required'
             ]);
+            $task->title = $request->title;
     		$task->description = $request->description;
 	    	$task->save();
-	    	return redirect('/dashboard');
+	    	return redirect('/');
     	}
     }
 }
