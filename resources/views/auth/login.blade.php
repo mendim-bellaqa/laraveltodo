@@ -21,7 +21,7 @@
 
                     <form method="POST" action="{{ route('login') }}" class="max-w-sm m-4 p-10 bg-black bg-opacity-25 rounded shadow-xl">
 
-                        <p class="text-white font-medium text-center text-lg font-bold">LOGIN</p>
+                        <p class="text-white text-center text-lg font-bold">LOGIN</p>
 
                         @csrf
 

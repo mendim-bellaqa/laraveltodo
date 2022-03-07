@@ -20,7 +20,7 @@
                     @endif
 
                     <form method="POST" action="{{ route('register') }}" class="max-w-sm m-4 p-10 bg-black bg-opacity-25 rounded shadow-xl">
-                        <p class="text-white font-medium text-center text-lg font-bold">REGISTER</p>
+                        <p class="text-white text-center text-lg font-bold">REGISTER</p>
                         @csrf
                         <div>
                             <label  class="block text-sm text-white mb-2" for="name">Name</label>
