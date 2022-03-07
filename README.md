@@ -13,7 +13,7 @@ ToDo List using:
 
 - Laravel
 - PHP
-- Vue.js
+- JavaScript
 - Jetstream
 - HTML
 - CSS
