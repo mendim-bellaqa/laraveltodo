@@ -49,7 +49,7 @@ class TasksController extends Controller
                 return view('edit', compact('task'));
         }
         else {
-             return redirect('/');
+            return redirect('/')->with('status', 'To Do updated successfully.');
          }
     }
 
@@ -57,7 +57,7 @@ class TasksController extends Controller
     {
     	if(isset($_POST['delete'])) {
     		$task->delete();
-    		return redirect('/');
+            return redirect('/')->with('status', 'To Do deleted successfully.');
     	}
     	else
     	{
@@ -68,7 +68,7 @@ class TasksController extends Controller
             $task->title = $request->title;
     		$task->description = $request->description;
 	    	$task->save();
-	    	return redirect('/');
+            return redirect('/')->with('status', 'To Do updated successfully.');
     	}
     }
 }
