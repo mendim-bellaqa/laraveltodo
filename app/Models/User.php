@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-use App\Models\Task;
+use App\Models\Todo;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -59,8 +59,8 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function tasks()
+    public function todos()
     {
-    	return $this->hasMany(Task::class);
+    	return $this->hasMany(Todo::class);
     }
 }

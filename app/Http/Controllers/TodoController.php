@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Task;
+use App\Models\Todo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
-class TasksController extends Controller
+class TodoController extends Controller
 {
     public function index(){
 
     if(Auth::check())
     {
-        $tasks = auth()->user()->tasks();
-        return view('welcome', compact('tasks'));
+        $todos = auth()->user()->todos();
+        return view('welcome', compact('todos'));
     }
 
         return Redirect::route('login')->withInput()->with('errmessage', 'Please Login to access restricted area.');
@@ -32,31 +32,31 @@ class TasksController extends Controller
             'title' => 'required',
             'description' => 'required'
         ]);
-    	$task = new Task();
-        $task->title = $request->title;
-    	$task->description = $request->description;
-    	$task->user_id = auth()->user()->id;
-    	$task->save();
+    	$todo = new Todo();
+        $todo->title = $request->title;
+    	$todo->description = $request->description;
+    	$todo->user_id = auth()->user()->id;
+    	$todo->save();
 
         return redirect('/')->with('status', 'To Do added successfully.');
     }
 
-    public function edit(Task $task)
+    public function edit(Todo $todo)
     {
 
-    	if (auth()->user()->id == $task->user_id)
+    	if (auth()->user()->id == $todo->user_id)
         {
-                return view('edit', compact('task'));
+                return view('edit', compact('todo'));
         }
         else {
             return redirect('/')->with('status', 'To Do updated successfully.');
          }
     }
 
-    public function update(Request $request, Task $task)
+    public function update(Request $request, Todo $todo)
     {
     	if(isset($_POST['delete'])) {
-    		$task->delete();
+    		$todo->delete();
             return redirect('/')->with('status', 'To Do deleted successfully.');
     	}
     	else
@@ -65,9 +65,9 @@ class TasksController extends Controller
                 'title' => 'required',
                 'description' => 'required'
             ]);
-            $task->title = $request->title;
-    		$task->description = $request->description;
-	    	$task->save();
+            $todo->title = $request->title;
+    		$todo->description = $request->description;
+	    	$todo->save();
             return redirect('/')->with('status', 'To Do updated successfully.');
     	}
     }
